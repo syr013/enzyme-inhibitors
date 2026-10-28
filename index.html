@@ -29,6 +29,7 @@ html, body {
 #stage {
   width: 1920px; height: 1080px;
   position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%) scale(1);
   transform-origin: center center;
   background: radial-gradient(1200px 700px at 80% 10%, #13213d 0%, var(--bg) 60%);
 }
@@ -288,17 +289,17 @@ button:hover { background: #24335a; }
 </div>
 
 <script>
-/* ---------- 모바일/PC 반응형 자동 맞춤 ---------- */
+/* ---------- 화면 맞춤 자동 비율 계산 ---------- */
 const stage = document.getElementById('stage');
 function fit() {
-  const s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
-  stage.style.transform = `translate(-50%, -50%) scale(${s})`;
+  const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+  stage.style.transform = `translate(-50%, -50%) scale(${scale})`;
 }
 window.addEventListener('resize', fit);
 window.addEventListener('orientationchange', fit);
 fit();
 
-/* ---------- 슬라이드 네비게이션 ---------- */
+/* ---------- 슬라이드 이동 ---------- */
 const slides = [...document.querySelectorAll('.slide')];
 let cur = 0;
 function go(i) {
